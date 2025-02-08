@@ -41,7 +41,6 @@ class FormController extends Controller
                 'address' => 'nullable|string',
                 'city' => 'nullable|string|max:255',
                 'country' => 'nullable|string|max:255',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     
                 // Add validations for booking and order related data
                 'car_id' => 'required|integer',
@@ -98,7 +97,7 @@ class FormController extends Controller
                 'dropoof' => $request->input('drop_time'),
                 'start' => $request->input('start_time'),
                 'end' => $request->input('end_time'),
-                'cus_id' => $customer->id, 
+                'cus_id' => $customer->cus_id, 
             ]);
             // Create the Order record
             $order = Order::create([

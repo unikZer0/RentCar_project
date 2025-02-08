@@ -41,7 +41,10 @@ class FormController extends Controller
                 'address' => 'nullable|string',
                 'city' => 'nullable|string|max:255',
                 'country' => 'nullable|string|max:255',
+<<<<<<< HEAD
+=======
                 // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+>>>>>>> 05f403f9e542c74a7d346465c6ee9ba95fc9b0a9
     
                 // Add validations for booking and order related data
                 'car_id' => 'required|integer',

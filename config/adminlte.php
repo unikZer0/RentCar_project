@@ -360,6 +360,13 @@ return [
             'url' => 'manager/vieworder',
             'can' => 'manager',
         ],
+        ['header' => 'Order'],
+        [
+            'text' => 'Order ',
+            'icon' => 'fas fa-fw fa-box',
+            'url' => 'admin/vieworder',
+            'can' => 'admin',
+        ],
         ['header' => 'Car Management'],
         [
             'text' => 'Car ',

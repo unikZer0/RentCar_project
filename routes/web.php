@@ -36,13 +36,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('/viewmanager', [AdminManagerCtrl::class, 'viewmanager'])->name('admin.viewmanager');
     //admin user
     Route::get('/viewuser', [AdminUserCtrl::class, 'viewuser'])->name('admin.viewuser');
-    //car
-    Route::get('/viewcar', [AdmincarCtrl::class, 'viewcar'])->name('admin.viewcar');
     //dashboard
     Route::get('/dashboard', [DashboardCtrl::class, 'index'])->name('admin.dashboard');
     //regis
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('admin.register');
     Route::post('/register', [RegisteredUserController::class, 'store']);
+    //view car admin
+    Route::get('/editcar', [AdmincarCtrl::class, 'editcar'])->name('admin.editcar');
+    Route::get('/viewcar', [AdmincarCtrl::class, 'viewcar'])->name('admin.viewcar');
+    Route::get('/vieworder', [AdmincarCtrl::class, 'vieworder'])->name('admin.vieworder');
+    
 });
 
 // Manager

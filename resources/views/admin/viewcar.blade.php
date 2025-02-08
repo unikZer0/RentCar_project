@@ -1,70 +1,138 @@
 @extends('adminlte::page')
 
-@section('title', 'user')
+@section('title', 'Dashboard')
 
 @section('content_header')
+    <h1>viewcar</h1>
 @stop
+
 
 @section('content')
-<div class="container mt-5">
-    <h1 class="text-center">Car Management Form</h1>
-    <form action="" method="POST" enctype="multipart/form-data" class="border p-4 rounded shadow">
-        @csrf
-        <div class="mb-3">
-            <label for="car_name" class="form-label">Car Name</label>
-            <input type="text" id="car_name" name="car_name" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="descriptions" class="form-label">Description</label>
-            <textarea id="descriptions" name="descriptions" class="form-control" rows="4" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="price_daily" class="form-label">Price Daily</label>
-            <input type="number" id="price_daily" name="price_daily" step="0.01" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" id="quantity" name="quantity" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="images" class="form-label">Car Image</label>
-            <input type="file" id="images" name="images" accept="image/*" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="car_status" class="form-label">Car Status</label>
-            <select id="car_status" name="car_status" class="form-select" required>
-                <option value="available">Available</option>
-                <option value="unavailable">Unavailable</option>
-                <option value="maintenance">Maintenance</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="manager_id" class="form-label">Manager ID</label>
-            <input type="number" id="manager_id" name="manager_id" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="car_type_id" class="form-label">Car Type</label>
-            <select id="car_type_id" name="car_type_id" class="form-select" required>
-                <option value="">Select Car Type</option>
-                @foreach($carTypes as $carType)
-                    <option value="{{ $carType->id }}">{{ $carType->car_type_name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
-</div>
+        <h2 class="mb-4">Car List</h2>
+    <table class="table table-bordered">
+    <thead class="table">
+        <tr>
+            <th>Car ID</th>
+            <th>CarName</th>
+            <th>Cartype</th>
+            <th>Describtions</th>
+            <th>price</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($cardata as $data)
+            <tr>
+                <td>{{ $data->car_id }}</td>
+                <td>{{ $data->car_name }}</td>
+                <td>{{ $data->carType->car_type_name }}</td>
+                <td>{{ $data->descriptions }}</td>
+                <td>{{ $data->price_daily }}</td>
+                <td>
+                    <img src="{{ asset($data->image) }}" id="myImg" alt="" width="100" height="100">
+                    {{-- <div id="myModal" class="modal">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="img01">
+                        <div id="caption"></div>
+                      </div> --}}
+                </td>
+                <td>{{ $data->car_status }}</td>
+                <td>
 
-
+                    <form action="{{ route('manager.deletecar', ['id' => $data->car_id]) }}" method="get">
+                        <button class="edit btn btn-warning" data-id="{{ $data->car_id }}" data-bs-toggle="modal"
+                            data-bs-target="#addCarModalEdit">Edit</button>
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+    </table>
 @stop
-
-@section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-@stop
-
+@include('admin.editcar')
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+
+    <script>
+        //insert edit
+        $(document).on("click", ".edit", function(e) {
+            e.preventDefault();
+            var carID = $(this).data("id");
+            console.log(carID);
+
+            $.ajax({
+                url: "{{ route('admin.editcar') }}",
+                type: "GET",
+                data: {
+                    car_id: carID
+                },
+                success: function(data) {
+                    console.log(data.carData);
+                    $('#car_nameEdit').val(data.carData.car_name);
+                    $('#descriptionsEdit').val(data.carData.descriptions);
+                    $('#price_dailyEdit').val(data.carData.price_daily);
+                    $('#car_type_idEdit').val(data.carData.car_type_id).selectpicker('refresh');
+                    $('#car_statusEdit').val(data.carData.car_status).selectpicker('refresh');
+                    $('#car_idEdit').val(data.carData.car_id);
+                    $('#addCarModalEdit').modal('show');
+                },
+                error: function(xhr) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+//update
+        $("#updatetEditForm").on("submit", function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+            $.ajax({
+                url: "{{ route('manager.updatecar') }}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.success) {
+                        console.log(response.success);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 100);
+
+                        $('#addCarModalEdit').modal('hide');
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+        //img
+        var modal = document.getElementById("myModal");
+        var img = document.getElementById("myImg");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        img.onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+@stop
+@section('css')
+    {{-- Add Bootstrap Select CSS --}}
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+    <link href="{{ asset('css/imgpopup.css') }}" rel="stylesheet">
+   
 @stop

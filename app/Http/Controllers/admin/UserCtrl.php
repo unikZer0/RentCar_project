@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 class UserCtrl extends Controller
 {
     public function viewcustomer(){
-        $customer = Cus::all();
+        $customer = Cus::paginate(3);
         return view('admin.viewuser',compact('customer'));
     }
     public function updateCustomer(Request $request)

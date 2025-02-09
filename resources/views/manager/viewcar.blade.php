@@ -58,7 +58,9 @@
         @endforeach
     </tbody>
     </table>
+    {!!$cardata->links('pagination::bootstrap-5')!!}
     </div>
+    
     @include('manager.create')
 @stop
 @include('manager.editcar')

@@ -12,6 +12,7 @@
     <table class="table table-bordered">
     <thead class="table">
         <tr>
+            <th>Car By</th>
             <th>Car ID</th>
             <th>CarName</th>
             <th>Cartype</th>
@@ -24,7 +25,7 @@
     </thead>
     <tbody>
         @foreach ($cardata as $data)
-            <tr>
+            <tr><td>{{$data->user->name}}</td>
                 <td>{{ $data->car_id }}</td>
                 <td>{{ $data->car_name }}</td>
                 <td>{{ $data->carType->car_type_name }}</td>
@@ -52,6 +53,7 @@
         @endforeach
     </tbody>
     </table>
+    {!!$cardata->links('pagination::bootstrap-5')!!}
 @stop
 @include('admin.editcar')
 @section('js')
@@ -91,7 +93,7 @@
 
             var formData = new FormData(this);
             $.ajax({
-                url: "{{ route('manager.updatecar') }}",
+                url: "{{ route('admin.updatecar') }}",
                 type: "POST",
                 data: formData,
                 processData: false,

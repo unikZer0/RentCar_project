@@ -15,8 +15,7 @@ class ManagerMiddleware
 
         return response(
             "<script>
-                alert('You have no right to access this page or you need to login again with admin account');
-                window.location.href = '/'; 
+                alert('You have no right to access this page or you need to login again with admin account'); 
             </script>"
         );
     }

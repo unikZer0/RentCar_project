@@ -27,7 +27,7 @@
                     <td>{{ $data->email }}</td>
                     <td>
                         <!-- Use a class instead of an ID for images -->
-                        <img src="{{ asset($data->image) }}" class="myImg" alt="" width="100" height="100">
+                        <img src="{{ asset('storage/'.$data->image) }}" class="myImg" alt="" width="100" height="100">
                     </td>
                     <td>
                         <form action="{{ route('admin.deletemanager', ['id' => $data->user_id]) }}" method="get">
@@ -41,6 +41,7 @@
             @endforeach
         </tbody>
     </table>
+    {!!$manager->links('pagination::bootstrap-5')!!}
     {{-- <div id="myModal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="img01">

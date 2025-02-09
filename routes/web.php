@@ -49,6 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::post('/register', [RegisteredUserController::class, 'store']);
     //view car admin
     Route::get('/editcar', [AdmincarCtrl::class, 'editcar'])->name('admin.editcar');
+    Route::post('/updatecar', [AdmincarCtrl::class, 'updatecar'])->name('admin.updatecar');
     Route::get('/viewcar', [AdmincarCtrl::class, 'viewcar'])->name('admin.viewcar');
     Route::get('/vieworder', [AdmincarCtrl::class, 'vieworder'])->name('admin.vieworder');
     

@@ -19,7 +19,7 @@ class Carctrl extends Controller
         'carType:car_type_id,car_type_name'
     )
     ->where('user_id', $userId)
-    ->get();
+    ->paginate(5);
     return view('manager.viewcar', compact('cardata', 'cartypes'));
 }
 

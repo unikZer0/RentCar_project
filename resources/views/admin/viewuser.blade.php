@@ -3,12 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>viewcar</h1>
+    <h1>view customer</h1>
 @stop
 
 
 @section('content')
-    <h2 class="mb-4">customer List</h2>
+    <h2 class="mb-2">customer List</h2>
     <table class="table table-bordered">
         <thead class="table">
             <tr>
@@ -53,6 +53,7 @@
             @endforeach
         </tbody>
     </table>
+    {!!$customer->links('pagination::bootstrap-5')!!}
     {{-- <div id="myModal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="img01">

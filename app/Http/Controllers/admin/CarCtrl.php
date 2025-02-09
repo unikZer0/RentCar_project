@@ -17,7 +17,7 @@ class CarCtrl extends Controller
             'user:user_id,name',
             'carType:car_type_id,car_type_name'
         )
-        ->get();
+        ->paginate(5);
         return view('admin.viewcar', compact('cardata', 'cartypes'));
     }
     
@@ -109,7 +109,7 @@ class CarCtrl extends Controller
         $orderdata = Order::with('booking.customer', 'booking.car')
                           ->whereIn('book_id', $bookingdata->pluck('book_id'))
                           ->orderBy('book_id')
-                          ->get();
+                          ->paginate(5);
             return view('admin.vieworder', compact('orderdata'));
         }
 }

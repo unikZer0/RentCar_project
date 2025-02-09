@@ -14,7 +14,7 @@ class ManagerCtrl extends Controller
 {
     //use for manage manager in our web
     public function viewmanager(){
-        $manager = User::where('role_id',2)->get();
+        $manager = User::where('role_id',2)->paginate(5);
         return view('admin.viewmanager',compact('manager'));
     }
     public function updatemanager(Request $request)
@@ -35,8 +35,8 @@ class ManagerCtrl extends Controller
 
         if ($request->hasFile('image')) {
             $filename = time() . '_' . $request->file('image')->getClientOriginalName();
-            $filePath = $request->file('image')->storeAs('images', $filename, 'public');
-            $userData->image = 'storage/images/' . $filename;
+            $filePath = $request->file('image')->storeAs('profile_images', $filename, 'public');
+            $userData->image = 'profile_images/' . $filename;
         }
 
         $userData->save();

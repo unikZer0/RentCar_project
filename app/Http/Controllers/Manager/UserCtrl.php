@@ -22,7 +22,7 @@ class UserCtrl extends Controller
         $orderdata = Order::with('booking.customer', 'booking.car')
                           ->whereIn('book_id', $bookingdata->pluck('book_id'))
                           ->orderBy('book_id')
-                          ->get();
+                          ->paginate(5);
         $salesPerMonth = Booking::selectRaw('
                 YEAR(created_at) AS year,
                 MONTH(created_at) AS month,

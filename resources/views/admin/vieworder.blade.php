@@ -40,10 +40,14 @@
                     <td>{{ $order->booking->end }}</td>
                     <td>{{ number_format($order->total, 3) }} KIP</td>
                 </tr>
+                
             @endforeach
+            
         </tbody>
     </table>
+    {!!$orderdata->links('pagination::bootstrap-5')!!}
 </div>
+
 @stop
 
 @section('css')

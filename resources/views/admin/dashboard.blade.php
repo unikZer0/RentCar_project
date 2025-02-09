@@ -20,7 +20,13 @@
             <div class="card-body">
               <h4 class="font-weight-normal mb-3">total manager <i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
               </h4>
-                <h2>{{$managertotal}}</h2>
+                <h2>
+                  @if ($managertotal==0)
+                  <h2>0</h2>
+                  @else
+                  {{$managertotal}}
+                  @endif
+                </h2>
             </div>
           </div>
         </div>
@@ -29,7 +35,11 @@
             <div class="card-body">
               <h4 class="font-weight-normal mb-3">total car <i class="mdi mdi-diamond mdi-24px float-end"></i>
               </h4>
-              <h2 class="mb-5">{{$cartotal}}</h2>
+              @if ($cartotal==0)
+                  <h2>0</h2>
+                  @else
+                  <h2 class="mb-5">{{$cartotal}}</h2>
+                  @endif
             </div>
           </div>
         </div>

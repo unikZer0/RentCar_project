@@ -45,7 +45,9 @@
             @endforeach
         </tbody>
     </table>
+    {!!$orderdata->links('pagination::bootstrap-5')!!}
 </div>
+
 @stop
 
 @section('css')

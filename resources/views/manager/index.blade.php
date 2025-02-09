@@ -22,27 +22,38 @@
     <div class="col-md-4 stretch-card grid-margin">
       <div class="card bg-gradient-info card-img-holder text-white">
         <div class="card-body">
-          <h4 class="font-weight-normal mb-3">Monthly income <i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
+          <h4 class="font-weight-normal mb-3">
+            Monthly income 
+            <i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
           </h4>
-          @foreach($salesPerMonth as $sales)
-                    <p>
-                        {{ \Carbon\Carbon::createFromDate($sales->year, $sales->month, 1)->format('F') }}
-                        /{{ $sales->year }}
-                    </p>
-                    <h1 >{{ number_format($sales->total_sales, 3) }} KIP</h1>
+          
+          @if ($salesPerMonth->isEmpty())
+            <h2>0</h2>
+          @else
+            @foreach($salesPerMonth as $sales)
+              <p>
+                {{ \Carbon\Carbon::createFromDate($sales->year, $sales->month, 1)->format('F') }} / {{ $sales->year }}
+              </p>
+              <h1>{{ number_format($sales->total_sales, 3) }} KIP</h1>
             @endforeach
+          @endif
         </div>
       </div>
     </div>
+    
     <div class="col-md-4 stretch-card grid-margin">
       <div class="card bg-gradient-success card-img-holder text-white">
         <div class="card-body">
           <h4 class="font-weight-normal mb-3">year income <i class="mdi mdi-diamond mdi-24px float-end"></i>
           </h4>
+          @if ($salesPerYear->isEmpty())
+              <h2>0</h2>
+          @else
           @foreach ($salesPerYear as $item)
           <h6 class="mb-5">{{$item ->year}}</h6>
           <h2 class="card-text">{{ number_format($item->total_sales, 3) }} KIP</h2>
           @endforeach
+          @endif
         </div>
       </div>
     </div>
@@ -79,6 +90,7 @@
             @endforeach
         </tbody>
     </table>
+    {!!$orderdata->links('pagination::bootstrap-5')!!}
   </div>
 @stop
 

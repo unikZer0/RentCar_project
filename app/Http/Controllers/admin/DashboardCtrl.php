@@ -20,8 +20,7 @@ class DashboardCtrl extends Controller
         $orderdata = Order::with('booking.customer', 'booking.car')
                           ->whereIn('book_id', $bookingdata->pluck('book_id'))
                           ->orderByDesc('book_id')
-                          ->limit(5)
-                          ->get();
+                          ->limit(5)->get();
         $orderCount = Order::whereIn('book_id',$bookingdata->pluck('book_id'))->count();
         $salesPerMonth = Booking::selectRaw('
                 YEAR(created_at) AS year,

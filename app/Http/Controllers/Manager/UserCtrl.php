@@ -14,7 +14,8 @@ class UserCtrl extends Controller
     public function vieworder()
     {
         $userID = auth()->user()->user_id;
-        $cars = tbl_cars::where('user_id', $userID)->get();
+        $cars = tbl_cars::where('user_id', $userID)
+                    ->get(['car_id', 'price_daily']);  
         $bookingdata = Booking::with('customer:cus_id,first_name,last_name,phone_number,email', 'car:car_id,car_name')
                               ->whereIn('car_id', $cars->pluck('car_id'))
                               ->get();

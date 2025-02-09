@@ -56,5 +56,15 @@ if (strpos($phoneNumber, '020') !== 0) {
         ]);
     }
     //delete form cus 
+    public function destroy($id)
+    {
+        $customer = Cus::find($id);
+        if (!$customer) {
+            return response()->json(['message' => 'Customer not found'], 404);
+        }
+        $customer->delete();
+
+        return response()->json(['message' => 'Customer deleted successfully']);
+    }
         }
 

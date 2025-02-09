@@ -27,6 +27,10 @@
                             <div class="mb-3">
                                 <label for="images" class="form-label">Car Image</label>
                                 <input type="file" id="imageEdit" name="image" accept="image/*" class="form-control">
+                                @if($car->image)
+                                    <img src="{{ asset($car->image) }}" alt="Current Image" style="max-width: 100px; margin-top: 10px;">
+                                @endif
+                            </div>
                             </div>
                             <div class="mb-3">
                                 <label for="car_status" class="form-label">Car Status</label>

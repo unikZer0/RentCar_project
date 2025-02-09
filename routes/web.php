@@ -34,8 +34,14 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
     //admin manager
     Route::get('/viewmanager', [AdminManagerCtrl::class, 'viewmanager'])->name('admin.viewmanager');
-    //admin user
-    Route::get('/viewuser', [AdminUserCtrl::class, 'viewuser'])->name('admin.viewuser');
+    Route::get('/editmanager', [AdminManagerCtrl::class, 'editmanager'])->name('admin.editmanager');
+    Route::post('/updatemanager', [AdminManagerCtrl::class, 'updatemanager'])->name('admin.updatemanager');
+    Route::get('/deletemanager/{id}', [AdminManagerCtrl::class, 'deletemanager'])->name('admin.deletemanager');
+    //admin customer
+    Route::get('/viewuser', [AdminUserCtrl::class, 'viewcustomer'])->name('admin.viewuser');
+    Route::get('/editcustomer', [AdminUserCtrl::class, 'editcustomer'])->name('admin.editcustomer');
+    Route::post('/updatecustomer', [AdminUserCtrl::class, 'updatecustomer'])->name('admin.updatecustomer');
+    Route::get('/deletecustomer/{id}', [AdminUserCtrl::class, 'deletecustomer'])->name('admin.deletecustomer');
     //dashboard
     Route::get('/dashboard', [DashboardCtrl::class, 'index'])->name('admin.dashboard');
     //regis

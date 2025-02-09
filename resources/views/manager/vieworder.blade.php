@@ -22,6 +22,7 @@
                 <th>Dropoff</th>
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>Total day</th>
                 <th>Total Price</th>
             </tr>
         </thead>
@@ -38,6 +39,7 @@
                     <td>{{ $order->booking->dropoof }}</td>
                     <td>{{ $order->booking->start }}</td>
                     <td>{{ $order->booking->end }}</td>
+                    <td>{{ $order->days }}</td>
                     <td>{{ number_format($order->total, 3) }} KIP</td>
                 </tr>
             @endforeach

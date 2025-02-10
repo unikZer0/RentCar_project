@@ -25,7 +25,7 @@ class ManagerCtrl extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $userData = User::find($request->car_id); 
+        $userData = User::find($request->car_id);
 
         if (!$userData) {
             return response()->json(['errors' => ['userData not found!']], 404);

@@ -68,6 +68,7 @@
                     },
                     success: function(data) {
                         console.log("data :", data.userData);
+                        $('#car_idEdit').val(data.userData.user_id);
                         $('#car_nameEdit').val(data.userData.name);
                         $('#addCarModalEdit').modal('show');
                     },

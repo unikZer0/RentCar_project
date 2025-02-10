@@ -38,7 +38,7 @@
                     <td>{{ $data->city }}</td>
                     <td>{{ $data->country }}</td>
                     <td>
-                        <!-- Use a class instead of an ID for images -->
+                        <!-- Use a class instead of an ID for image -->
                         <img src="{{ asset($data->image) }}" class="myImg" alt="" width="100" height="100">
                     </td>
                     <td>

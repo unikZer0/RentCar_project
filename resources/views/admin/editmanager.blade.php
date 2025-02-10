@@ -1,4 +1,4 @@
-@foreach ($manager as $car)
+
     <div class="modal fade" id="addCarModalEdit" tabindex="-1" aria-labelledby="addCarModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -11,7 +11,7 @@
                         <h2 class="text-center">Edit manager</h2>
                         <form id="updatetEditForm" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="text" id="car_idEdit" name="car_id" readonly value="{{ $car->user_id }}" class="form-control">
+                            <input type="text" id="car_idEdit" name="car_id" readonly class="form-control">
                             <div class="mb-3">
                                 <label for="car_name" class="form-label">user Name</label>
                                 <input type="text" id="car_nameEdit" name="name" class="form-control" required >
@@ -30,4 +30,3 @@
             </div>
         </div>
     </div>
-@endforeach

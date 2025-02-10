@@ -48,19 +48,21 @@
                 <td>
 
                     <form action="{{ route('manager.deletecar', ['id' => $data->car_id]) }}" method="get">
-                        <button class="edit btn btn-warning" data-id="{{ $data->car_id }}" data-bs-toggle="modal"
-                            data-bs-target="#addCarModalEdit">Edit</button>
+                        <button class="edit btn btn-primary" data-id="{{ $data->car_id }}" data-bs-toggle="modal"
+                            data-bs-target="#addCarModalEdit"><i class="fa fa-edit"></i>
+                        </button>
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </button>
                 </td>
             </tr>
         @endforeach
     </tbody>
     </table>
-    {!!$cardata->links('pagination::bootstrap-5')!!}
+    {!! $cardata->links('pagination::bootstrap-5') !!}
     </div>
-    
+
     @include('manager.create')
 @stop
 @include('manager.editcar')
@@ -95,7 +97,7 @@
                 }
             });
         });
-//update
+        //update
         $("#updatetEditForm").on("submit", function(e) {
             e.preventDefault();
 
@@ -135,7 +137,6 @@
         span.onclick = function() {
             modal.style.display = "none";
         }
-
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -145,5 +146,5 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
     <link href="{{ asset('css/imgpopup.css') }}" rel="stylesheet">
-   
+
 @stop

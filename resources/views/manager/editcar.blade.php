@@ -34,14 +34,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="car_status" class="form-label">Car Status</label>
-                                <select id="car_statusEdit{{ $car->car_id }}" name="car_status" class="form-select selectpicker" required>
+                                <select id="car_statusEdit{{ $car->car_id }}" name="car_status" class="form-select form-select-lg mb-3 selectpicker" required>
                                     <option value="Available" {{ $car->car_status == 'Available' ? 'selected' : '' }}>Available</option>
                                     <option value="Maintenance" {{ $car->car_status == 'Maintenance' ? 'selected' : '' }}>Maintenance</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="car_type_id" class="form-label">Car Type</label>
-                                <select id="car_type_idEdit{{ $car->car_id }}" name="car_type_id" class="form-select selectpicker" data-live-search="true" required>
+                                <select id="car_type_idEdit{{ $car->car_id }}" name="car_type_id" class="form-select form-select-lg mb-3 selectpicker" data-live-search="true" required>
                                     <option value="">Select Car Type</option>
                                     @foreach ($cartypes as $carType)
                                         <option value="{{ $carType->car_type_id }}" {{ $carType->car_type_id == $car->car_type_id ? 'selected' : '' }}>

@@ -43,11 +43,12 @@
                     </td>
                     <td>
                         <form action="{{ route('admin.deletecustomer', ['id' => $data->cus_id]) }}" method="get">
-                            <button class="edit btn btn-warning" data-id="{{ $data->cus_id }}" data-bs-toggle="modal"
-                                data-bs-target="#addCarModalEdit">Edit</button>
+                            <button class="edit btn btn-primary" data-id="{{ $data->cus_id }}" data-bs-toggle="modal"
+                                data-bs-target="#addCarModalEdit"><i class="fa fa-edit"></i></button>
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash"></i> 
+                            </button>
                     </td>
                 </tr>
             @endforeach

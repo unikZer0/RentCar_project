@@ -3,7 +3,7 @@
 @section('title', 'Register')
 
 @section('content_header')
-    <h1>Register</h1>
+    <h1>Register Manager</h1>
 @stop
 
 @section('content')

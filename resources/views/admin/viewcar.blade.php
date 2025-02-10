@@ -41,13 +41,16 @@
                 </td>
                 <td>{{ $data->car_status }}</td>
                 <td>
-
-                    <form action="{{ route('manager.deletecar', ['id' => $data->car_id]) }}" method="get">
-                        <button class="edit btn btn-warning" data-id="{{ $data->car_id }}" data-bs-toggle="modal"
-                            data-bs-target="#addCarModalEdit">Edit</button>
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                        <form action="{{ route('admin.deletecar', ['id' => $data->car_id]) }}" method="get">
+                            <button class="edit btn btn-primary" data-id="{{ $data->car_id }}" data-bs-toggle="modal" data-bs-target="#addCarModalEdit">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash"></i> 
+                            </button>
+                        </form>
+                    </td>
                 </td>
             </tr>
         @endforeach

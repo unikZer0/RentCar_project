@@ -28,3 +28,4 @@ Route::resource('cars', TblCarsController::class);
 //user / customer route
 Route::resource('form', FormController::class);
 Route::resource('searchData', searchDataController::class);
+Route::get('cars_cors', [TblCarsController::class, 'car_testcors']);

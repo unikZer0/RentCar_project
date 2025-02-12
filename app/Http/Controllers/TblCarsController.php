@@ -132,4 +132,9 @@ class TblCarsController extends Controller
             'data' => $cars,
         ], 200);
     }
+    public function car_testcors()
+    {
+        // dd(tbl_cars::all());
+        return response()->json(tbl_cars::all());
+    }
 }

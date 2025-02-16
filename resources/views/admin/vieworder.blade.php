@@ -3,14 +3,14 @@
 @section('title', 'Order List')
 
 @section('content_header')
-    <h1>Order List</h1>
+    <h1 class="title">Order List</h1>
 @stop
 
 @section('content')
 <div class=" mt-3">
-    <h2 class="mb-4">Your Order List</h2>
-    <table class="table table-bordered">
-        <thead>
+    <p class="mb-2">Your Order List</p>
+    <table class="table table-bordered text-center align-middle shadow-lg">
+        <thead class="table-dark">
             <tr>
                 <th>Book ID</th>
                 <th>Customer Name</th>
@@ -52,6 +52,79 @@
 
 @section('css')
     {{-- Add your custom CSS here --}}
+    <style>
+        .table {
+          width: 100%;
+          background: #ffffff;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+    
+      .table-dark {
+          background-color: #343a40;
+          color: white;
+          font-weight: bold;
+          text-transform: uppercase;
+          font-size: 14px;
+      }
+    
+      .table th {
+          padding: 12px 20px;
+      }
+    
+      .table tbody tr {
+          background-color: #f9f9f9;
+          transition: background-color 0.3s ease;
+      }
+    
+    
+      .table td {
+          padding: 12px 20px;
+          vertical-align: middle;
+          font-size: 14px;
+      }
+      .table td:last-child {
+          font-weight: bold;
+          color: #28a745;
+      }
+    
+      .table-bordered {
+          border: 1px solid #dee2e6;
+      }
+    
+      .table-bordered th, .table-bordered td {
+          border: 1px solid #dee2e6;
+      }
+    
+      /* Paginate */
+      .pagination {
+          justify-content: center;
+      }
+    
+      .pagination .page-item .page-link {
+          border-radius: 6px;
+          transition: 0.2s;
+      }
+    
+      .pagination .page-item .page-link:hover {
+          background-color: #007bff;
+          color: white;
+      }
+      .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        p.mb-2 {
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+       </style>
 @stop
 
 @section('js')

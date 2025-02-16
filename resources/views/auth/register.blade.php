@@ -54,7 +54,6 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <a class="text-sm" href="{{ route('login') }}">
-                                {{ __('Already registered?') }}
                             </a>
                             <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
                         </div>
